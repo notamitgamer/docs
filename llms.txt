@@ -1,0 +1,62 @@
+﻿#  | Docs
+
+> Centralized documentation for Amit's projects — pick one below to get started.
+
+- [Amit's Docs](https://docs.amit.is-a.dev/index.md): Amit's Docs
+- [WhatsApp Logger (Self-Hosted)](https://docs.amit.is-a.dev/whatsapp-logger/index.md): A privacy-focused, self-hosted WhatsApp archiving tool. It captures messages — including deleted ones — via a linked device connection and stores them in your own Firebase Firestore database.
+- [Git Mirror Site Generator](https://docs.amit.is-a.dev/git-mirror/index.md): An automated setup that generates a fast, static HTML mirror of your public GitHub repositories, using stagit and GitHub Actions.
+- [Mojic](https://docs.amit.is-a.dev/mojic/index.md): Operation Ironclad: obfuscate C source code into a randomized, password-seeded stream of emojis.
+- [Githrun](https://docs.amit.is-a.dev/githrun/index.md): Githrun is a command-line tool and VS Code extension that lets you execute, explore, and install Python scripts directly from GitHub and Gists — handling dependencies, private repositories, and local tool installation along the way.
+- [Veyrix IDE](https://docs.amit.is-a.dev/veyrix/index.md): v1.1.0 — Stable
+- [OSMA (Open Source Module Archive)](https://docs.amit.is-a.dev/osma/index.md): Registry lookups, without the wait. OSMA is a lightning-fast, static search archive for querying open-source packages across NPM and PyPI, bypassing live registry bottlenecks.
+
+## WhatsApp Logger
+
+- [Prerequisites](https://docs.amit.is-a.dev/whatsapp-logger/prerequisites.md): Before you start, make sure you have the following:
+- [Step 1: Firebase Setup (The Database)](https://docs.amit.is-a.dev/whatsapp-logger/firebase-setup.md): Go to the Firebase Console and create a new project.
+- [Step 2: Deploy Backend (The Listener)](https://docs.amit.is-a.dev/whatsapp-logger/deploy-backend.md): Fork the repository to your own GitHub account: WhatsApp-Logger-Self-Hosted-
+- [Step 3: Connect WhatsApp](https://docs.amit.is-a.dev/whatsapp-logger/connect-whatsapp.md): Open your Render URL (https://your-app.onrender.com) in a browser.
+- [Step 4: Setup Frontend (The Viewer)](https://docs.amit.is-a.dev/whatsapp-logger/setup-frontend.md): Download index.html from the repository.
+- [Step 5: Usage](https://docs.amit.is-a.dev/whatsapp-logger/usage.md): Navigate to your hosted frontend URL.
+- [Step 6: Keep it Alive (UptimeRobot)](https://docs.amit.is-a.dev/whatsapp-logger/keep-alive.md): Render's free tier spins down after inactivity. To keep your logger running 24/7:
+- [Troubleshooting](https://docs.amit.is-a.dev/whatsapp-logger/troubleshooting.md): Send a message to the linked WhatsApp account to trigger the first log.
+- [Roadmap: Media Upgrade & Security Enhancements](https://docs.amit.is-a.dev/whatsapp-logger/roadmap.md): This work lives on a separate branch. Do not sync your fork with it yet — it may break the logger until it's finished.
+
+## Git Mirror
+
+- [How to Fork and Deploy](https://docs.amit.is-a.dev/git-mirror/deploy.md): Follow these steps to create and host your own version of this repository mirror.
+- [Customization](https://docs.amit.is-a.dev/git-mirror/customization.md): Open build.sh and find the gh repo list command. The select statement controls which repos are excluded — by default it skips git-mirror, register, and
+- [How the Build Works](https://docs.amit.is-a.dev/git-mirror/build-process.md): build.sh runs the whole pipeline, driven by GitHub Actions. Here's what it does, step by step.
+
+## Mojic
+
+- [Installation](https://docs.amit.is-a.dev/mojic/installation.md): The published npm package is discontinued and npm install -g mojic will fail with a 404. Use the "from source" method below.
+- [CLI Usage](https://docs.amit.is-a.dev/mojic/usage.md): Transforms a .c file into a .mojic file. You'll be prompted to create a password — it's required to decrypt.
+- [Under the Hood: Operation Ironclad](https://docs.amit.is-a.dev/mojic/algorithm.md): Mojic v2.1.0 implements a custom crypto-system dubbed "Operation Ironclad."
+
+## Githrun
+
+- [Installation](https://docs.amit.is-a.dev/githrun/cli-usage.md): Execute a script directly from a URL.
+- [Authentication (Private Repos & Rate Limits)](https://docs.amit.is-a.dev/githrun/cli-auth-and-tools.md): GitHub limits unauthenticated requests to 60/hour. Logging in raises this to 5,000 and grants access to private repositories.
+- [Find & Search](https://docs.amit.is-a.dev/githrun/cli-find-download.md): Search for files inside a remote repository without cloning it.
+- [Python API Usage](https://docs.amit.is-a.dev/githrun/python-api.md): Githrun can be used inside your own Python scripts.
+- [VS Code Extension](https://docs.amit.is-a.dev/githrun/vscode-extension.md): Marketplace — search for "Githrun" in the VS Code Extensions view and click Install
+- [Configuration](https://docs.amit.is-a.dev/githrun/configuration.md): Githrun stores configuration and cache files in your home directory:
+
+## Veyrix IDE
+
+- [Comprehensive Usage Guide](https://docs.amit.is-a.dev/veyrix/usage-guide.md): How to operate Veyrix IDE effectively — file management, keyboard shortcuts, versioning, and sharing.
+- [Architecture & State Management](https://docs.amit.is-a.dev/veyrix/architecture.md): Data flows through three strictly isolated layers:
+- [Cryptography & Security Model](https://docs.amit.is-a.dev/veyrix/security.md): When a user applies a password to a Cloud Share snippet, the plaintext password is never transmitted to Firebase. Veyrix uses the native Web Crypto API to
+- [Veyrix Web (Multi-File IDE)](https://docs.amit.is-a.dev/veyrix/veyrix-web.md): Veyrix Web (web.html) is an advanced, multi-file environment built specifically for web development. Unlike the single-file main IDE, it uses a robust virtual file system with directory structures, multi-tab editing, and an integrated real-time preview window.
+- [Performance & Benchmarks](https://docs.amit.is-a.dev/veyrix/performance.md): By stripping away Webpack overhead, Virtual DOM reconciliation, and heavy language servers, Veyrix operates on a fraction of the hardware requirements of modern cloud IDEs.
+- [Current Limitations](https://docs.amit.is-a.dev/veyrix/roadmap.md): Flat file system — the main IDE has no directory/subfolder support; flat array mapping only (Veyrix Web solves this separately with a true VFS)
+- [Frequently Asked Questions](https://docs.amit.is-a.dev/veyrix/faq.md): Where are my files stored? All files are stored locally on your device inside your browser's secure IndexedDB. They're never uploaded to any server automatically — you maintain full ownership and privacy of your code.
+
+## OSMA
+
+- [Quick Start](https://docs.amit.is-a.dev/osma/quickstart.md): OSMA has fully open CORS and requires no authentication keys, so you can start fetching package data immediately — from a backend script, a CLI tool, or directly inside a browser application.
+- [NPM API](https://docs.amit.is-a.dev/osma/npm-api.md): Base URL: https://notamitgamer-osma-npm-api.hf.space
+- [PyPI API](https://docs.amit.is-a.dev/osma/pypi-api.md): Base URL: https://notamitgamer-osma-pypi-api.hf.space
+- [Utility Endpoints](https://docs.amit.is-a.dev/osma/utility.md): These endpoints are available on both the NPM and PyPI APIs. Examples below use the NPM base URL.
+- [Notes & Reference](https://docs.amit.is-a.dev/osma/notes.md): Rate limits — APIs are strictly rate-limited to 10 requests/minute and 100 requests/hour per IP to protect the free-tier infrastructure. Send the X-Bypass-Token header to override this.
