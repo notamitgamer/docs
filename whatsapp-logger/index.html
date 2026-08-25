@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.840960483330">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.840960509086">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -37,11 +37,11 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../resources/css/retype.css?v=4.6.0.840960483330" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=4.6.0.840960509086" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=4.6.0.840960483330" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=4.6.0.840960509086" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.6.0.840960483330" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.6.0.840960509086" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -219,8 +219,8 @@
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-            <h5>Update to v4.1.7</h5>
-<p>Earlier versions could get stuck in a reconnect loop (Status 428) due to a deprecated <code translate="no" v-pre>printQRInTerminal</code> setting in Baileys. This is fixed in v4.1.7, along with QR code rendering now working directly on the Express web interface instead of the broken terminal output.</p>
+            <h5>Security update in v4.2.1</h5>
+<p>Versions before v4.2.1 shipped a public Firebase Web SDK config in the frontend, which let anyone who viewed the page source read your chat database directly, bypassing login. As of v4.2.1, the frontend talks only to your Render backend over an authenticated connection — Firestore is never reachable from the browser. If you&#x27;re on an older version, update and follow the revised <a href="firebase-setup/">Firebase Setup</a> and <a href="setup-frontend/">Frontend Setup</a> steps.</p>
         </div>
     </div>
 </div>
