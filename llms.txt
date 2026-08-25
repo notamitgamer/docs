@@ -20,7 +20,6 @@
 - [Step 5: Usage](https://docs.amit.is-a.dev/whatsapp-logger/usage.md): Navigate to your hosted frontend URL.
 - [Step 6: Keep it Alive (UptimeRobot)](https://docs.amit.is-a.dev/whatsapp-logger/keep-alive.md): Render's free tier spins down after inactivity. To keep your logger running 24/7:
 - [Troubleshooting](https://docs.amit.is-a.dev/whatsapp-logger/troubleshooting.md): Send a message to the linked WhatsApp account to trigger the first log.
-- [Roadmap: Media Upgrade & Security Enhancements](https://docs.amit.is-a.dev/whatsapp-logger/roadmap.md): This work lives on a separate branch. Do not sync your fork with it yet — it may break the logger until it's finished.
 
 ## Git Mirror
 
