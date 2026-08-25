@@ -12,7 +12,7 @@ Before you start, make sure you have the following:
 
 - **Backend (Render + Docker)** — runs the Baileys WhatsApp listener, authenticates the frontend, and writes messages to Firestore
 - **Database (Firebase Firestore)** — stores your chat logs
-- **Frontend (`index.html`)** — a single static file you host anywhere (Firebase Hosting, GitHub Pages, Netlify, Vercel) that reads from Firestore and talks to your Render backend
+- **Frontend (`index.html`)** — a single static file you host anywhere (Firebase Hosting, GitHub Pages, Netlify, Vercel). It never talks to Firestore directly — it authenticates against and streams chat data from your Render backend only
 - **UptimeRobot** — pings your Render backend every 5 minutes so the free tier doesn't spin down from inactivity
 
 Continue to [Firebase Setup](firebase-setup.md).
