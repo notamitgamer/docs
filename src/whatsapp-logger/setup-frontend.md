@@ -7,25 +7,15 @@ order: 850
 
 1. Download `index.html` from the repository.
 2. Open it in a text editor.
-3. Find the configuration section (around line 675). Before editing, it looks like this:
+3. Find the configuration line near the top of the `<script>` block. Before editing, it looks like this:
 
 ```javascript
 const RENDER_BACKEND_URL = "";
-
-// Firebase Config
-const firebaseConfig = {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: ""
-};
 ```
 
-4. Fill in the details:
-   - `RENDER_BACKEND_URL` — your Render URL, e.g. `https://your-app.onrender.com` (**no trailing slash**)
-   - `firebaseConfig` — the keys you copied during [Firebase Setup](firebase-setup.md)
+4. Fill in your Render URL, e.g. `https://your-app.onrender.com` (**no trailing slash**).
+
+That's the only setting needed. As of v4.2.1, the frontend has no Firebase configuration of its own — it authenticates against your Render backend (`/api/verify`) and gets a session token back, then uses that token for every chat/message request over Server-Sent Events. Firebase credentials only ever live on the backend, set in [Deploy the Backend](deploy-backend.md).
 
 ## Deploy the frontend
 
