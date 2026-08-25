@@ -20,6 +20,7 @@
 - [Step 5: Usage](https://docs.amit.is-a.dev/whatsapp-logger/usage.md): Navigate to your hosted frontend URL.
 - [Step 6: Keep it Alive (UptimeRobot)](https://docs.amit.is-a.dev/whatsapp-logger/keep-alive.md): Render's free tier spins down after inactivity. To keep your logger running 24/7:
 - [Troubleshooting](https://docs.amit.is-a.dev/whatsapp-logger/troubleshooting.md): Send a message to the linked WhatsApp account to trigger the first log.
+- [Frequently Asked Questions](https://docs.amit.is-a.dev/whatsapp-logger/faqs.md): Is this really free? Yes. Render, Firebase, and UptimeRobot all have generous free tiers that are sufficient for personal use. You will typically never pay anything.
 
 ## Git Mirror
 
