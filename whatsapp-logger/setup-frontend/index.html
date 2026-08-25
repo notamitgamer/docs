@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.840960449647">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.840960483330">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -37,12 +37,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.6.0.840960449647" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.840960483330" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.840960449647" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.840960483330" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.840960449647" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.840960449647" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.840960483330" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=4.6.0.840960483330" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -210,29 +210,15 @@
 <ol>
 <li>Download <code translate="no" v-pre>index.html</code> from the repository.</li>
 <li>Open it in a text editor.</li>
-<li>Find the configuration section (around line 675). Before editing, it looks like this:</li>
+<li>Find the configuration line near the top of the <code translate="no" v-pre>&lt;script&gt;</code> block. Before editing, it looks like this:</li>
 </ol>
 <div id="step-4-setup-frontend-the-viewer-code-1" class="codeblock-wrapper"><doc-codeblock line-numbers>
-<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">const RENDER_BACKEND_URL = &quot;&quot;;
-
-// Firebase Config
-const firebaseConfig = {
-    apiKey: &quot;&quot;,
-    authDomain: &quot;&quot;,
-    projectId: &quot;&quot;,
-    storageBucket: &quot;&quot;,
-    messagingSenderId: &quot;&quot;,
-    appId: &quot;&quot;
-};</code></pre>
+<pre translate="no" class="language-javascript"><code v-pre class="language-javascript">const RENDER_BACKEND_URL = &quot;&quot;;</code></pre>
 </doc-codeblock></div>
 <ol start="4">
-<li>Fill in the details:
-<ul>
-<li><code translate="no" v-pre>RENDER_BACKEND_URL</code> — your Render URL, e.g. <code translate="no" v-pre>https://your-app.onrender.com</code> (<strong>no trailing slash</strong>)</li>
-<li><code translate="no" v-pre>firebaseConfig</code> — the keys you copied during <a href="../firebase-setup/">Firebase Setup</a></li>
-</ul>
-</li>
+<li>Fill in your Render URL, e.g. <code translate="no" v-pre>https://your-app.onrender.com</code> (<strong>no trailing slash</strong>).</li>
 </ol>
+<p>That&#x27;s the only setting needed. As of v4.2.1, the frontend has no Firebase configuration of its own — it authenticates against your Render backend (<code translate="no" v-pre>/api/verify</code>) and gets a session token back, then uses that token for every chat/message request over Server-Sent Events. Firebase credentials only ever live on the backend, set in <a href="../deploy-backend/">Deploy the Backend</a>.</p>
 <h2 id="deploy-the-frontend">Deploy the frontend</h2>
 <p>You can host this single file anywhere:</p>
 <ul>
