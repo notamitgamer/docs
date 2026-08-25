@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.840962271713">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.840962331306">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -37,11 +37,11 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=4.6.0.840962271713" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=4.6.0.840962331306" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.840962271713" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=4.6.0.840962331306" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.840962271713" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=4.6.0.840962331306" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -207,47 +207,93 @@
                 <!-- Page content  -->
 <h1 id="frequently-asked-questions">Frequently Asked Questions</h1>
 <h2 id="general">General</h2>
+<ul>
+<li>
 <p><strong>Is this really free?</strong><br />
 Yes. Render, Firebase, and UptimeRobot all have generous free tiers that are sufficient for personal use. You will typically never pay anything.</p>
+</li>
+<li>
 <p><strong>Is my data safe?</strong><br />
 Absolutely. The entire system is self-hosted. You own the database (Firebase) and the server (Render). The developers of this tool have zero access to your data.</p>
+</li>
+<li>
 <p><strong>Does the developer see my chats?</strong><br />
 No. The code connects directly from your Render server to your Firebase database using your personal API keys. There is no middleman server.</p>
+</li>
+<li>
 <p><strong>Is this legal?</strong><br />
 The tool uses standard WhatsApp Web protocols to function as a linked device. It is intended for personal archiving of your own conversations.</p>
+</li>
+</ul>
 <h2 id="features--limitations">Features &amp; Limitations</h2>
+<ul>
+<li>
 <p><strong>Does it save photos/videos?</strong><br />
 No. To keep the project free (Firebase offers limited storage), the logger only saves text content. Media files would fill up your free tier storage very quickly.</p>
+</li>
+<li>
 <p><strong>Does it save View Once messages?</strong><br />
 No. WhatsApp does not send the content of &quot;View Once&quot; media to linked devices/web clients, so the logger cannot see them.</p>
+</li>
+<li>
 <p><strong>Does it save WhatsApp Status?</strong><br />
 No, it cannot save WhatsApp statuses at this time. If you would like to add this feature to this project, please submit a pull request by uploading the updated code to <a href="https://github.com/notamitgamer/WhatsApp-Logger-Self-Hosted-/pulls">Github</a>.</p>
+</li>
+<li>
 <p><strong>Can I reply from the dashboard?</strong><br />
 No. This tool is designed strictly as a read-only archive to ensure maximum safety and simplicity.</p>
+</li>
+<li>
 <p><strong>Does it work with Group Chats?</strong><br />
 Yes! It automatically archives messages from any group you are part of, including messages sent by other participants.</p>
+</li>
+<li>
 <p><strong>Can I export my chats?</strong><br />
 Yes. Inside any chat on the dashboard, open the menu (three dots) and select &quot;Download&quot; to get a <code translate="no" v-pre>.txt</code> file of the conversation.</p>
+</li>
+</ul>
 <h2 id="technical-setup">Technical Setup</h2>
+<ul>
+<li>
 <p><strong>What is Render?</strong><br />
 Render is a cloud hosting platform. It provides the computer (server) that runs your logger 24/7 so your phone doesn&#x27;t have to.</p>
+</li>
+<li>
 <p><strong>What is Firebase?</strong><br />
 Firebase is Google&#x27;s database service. While Render processes the messages, Firebase acts as the permanent hard drive where logs are stored.</p>
+</li>
+<li>
 <p><strong>Do I need my phone on 24/7?</strong><br />
 No. Once you scan the QR code, the logger works independently via WhatsApp&#x27;s Multi-Device feature. Your phone does not need to stay online continuously after linking.</p>
+</li>
+<li>
 <p><strong>What if Render sleeps?</strong><br />
 If the server sleeps, you will miss messages sent during that time. This is why setting up UptimeRobot (Step 5) is critical—it keeps the server awake.</p>
+</li>
+<li>
 <p><strong>How do I update the logger?</strong><br />
 In your Render dashboard, go to your service and click &quot;Manual Deploy&quot; -&gt; &quot;Deploy latest commit&quot; to pull the newest code from GitHub.</p>
+</li>
+<li>
 <p><strong>Can I host this on a Raspberry Pi?</strong><br />
 Yes. The backend is standard Node.js. You can clone the repo and run <code translate="no" v-pre>npm install &amp;&amp; npm start</code>. You still need Firebase for the database.</p>
+</li>
+<li>
 <p><strong>How much storage do I have?</strong><br />
 The Firebase Free Tier (Spark Plan) gives you 1 GiB of storage. Since we only store text, this is enough for millions of messages.</p>
+</li>
+</ul>
 <h2 id="troubleshooting">Troubleshooting</h2>
+<ul>
+<li>
 <p><strong>Why is the QR code not loading?</strong><br />
 Your Render server might be starting up or deploying. Wait 30 seconds and refresh the page. Check Render logs if the issue persists.</p>
+</li>
+<li>
 <p><strong>Why does it say &quot;No chats found&quot;?</strong><br />
 The logger starts empty. It only records messages that arrive <em>after</em> you have linked it. Send a message to your phone to see it appear.</p>
+</li>
+</ul>
 <p><strong>I forgot my App PIN/Password</strong><br />
 On the lock screen, click &quot;Forgot PIN&quot;. You can reset your local security using the server credentials (<code translate="no" v-pre>AUTH_USER</code> and <code translate="no" v-pre>AUTH_PASS</code>) you set in Render.</p>
 
