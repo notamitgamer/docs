@@ -40,7 +40,6 @@ Yes. WhatsApp bans accounts for *sending* spam or unauthorized automated message
 - [Step 5 — Usage](usage.md)
 - [Step 6 — Keep it Alive](keep-alive.md)
 - [Troubleshooting](troubleshooting.md)
-- [Roadmap](roadmap.md)
 
 ## Disclaimer
 
