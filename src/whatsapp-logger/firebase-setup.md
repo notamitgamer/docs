@@ -16,28 +16,25 @@ order: 880
 
 ## Set security rules
 
-Go to the **Rules** tab in Firestore and replace the rules with the following. This allows anyone to read, but only your backend (via the Admin SDK) can write:
+Go to the **Rules** tab in Firestore and replace the rules with the following. As of v4.2.1, the frontend never talks to Firestore directly — it only talks to your Render backend, which uses the Admin SDK (which always bypasses these rules regardless of what they say). So there's no reason for any client-side reads or writes to be allowed:
 
 ```javascript
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /{document=**} {
-      // 1. Allow Read: Essential for your HTML page to fetch chats.
-      allow read: if true;
-
-      // 2. Allow Update: Enables the "Rename Chat" feature from the frontend.
-      // This allows updating existing documents (like changing the name)
-      // but prevents creating NEW documents or Deleting them.
-      allow update: if true;
-
-      // 3. Block Create/Delete: Only the Backend (Render) can create new messages
-      // or delete them. This prevents random people from injecting fake chats.
-      allow create, delete: if false;
+      // Deny all direct client access. The Admin SDK (your Render backend)
+      // bypasses these rules entirely, so this only blocks browsers/apps
+      // that try to read or write Firestore directly with a client SDK.
+      allow read, write: if false;
     }
   }
 }
 ```
+
+!!!danger If you're upgrading from an older version
+Earlier versions of this project shipped a public `firebaseConfig` in the frontend with permissive `allow read: if true` rules — this let anyone who inspected the page source read your entire chat database directly, bypassing the login screen. If you're on v4.2.1 or later, switch to the rules above and make sure your `index.html` has no `firebaseConfig` or Firebase SDK `<script>` tags left in it (see [Setup the Frontend](setup-frontend.md)).
+!!!
 
 ## Get backend credentials (service account)
 
@@ -49,11 +46,6 @@ service cloud.firestore {
 This file grants admin access to your database. You'll paste its contents into a Render environment variable in the next step — never commit it to a public repo.
 !!!
 
-## Get frontend configuration
-
-1. Go to **Project Settings** → **General**.
-2. Scroll to "Your apps" and click the **Web (`</>`)** icon.
-3. Register the app (nickname: "Logger Frontend").
-4. Copy the `firebaseConfig` object (API key, project ID, etc.) — you'll need it for `index.html` later.
+That's everything you need from Firebase — the frontend doesn't need any Firebase configuration at all. It only ever talks to your Render backend, which uses the service account credentials above.
 
 Continue to [Deploy the Backend](deploy-backend.md).
