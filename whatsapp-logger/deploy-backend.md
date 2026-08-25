@@ -16,6 +16,8 @@
 7. Click **Create Web Service**.
 8. Wait for deployment to finish. Render gives you a URL like `https://your-app.onrender.com`.
 
-!!!tip Go to `https://your-app.onrender.com/logs` to see the logs from server. You have to login first to see the logs.!!!
+!!!tip Logs
+Go to `https://your-app.onrender.com/logs` to see the logs from server. You have to login first to see the logs.
+!!!
 
 Continue to [Connect WhatsApp](connect-whatsapp.md).
