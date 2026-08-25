@@ -8,8 +8,8 @@ order: 900
 
 A privacy-focused, self-hosted WhatsApp archiving tool. It captures messages — including deleted ones — via a linked device connection and stores them in your own Firebase Firestore database.
 
-!!!warning Update to v4.1.7
-Earlier versions could get stuck in a reconnect loop (Status 428) due to a deprecated `printQRInTerminal` setting in Baileys. This is fixed in v4.1.7, along with QR code rendering now working directly on the Express web interface instead of the broken terminal output.
+!!!warning Security update in v4.2.1
+Versions before v4.2.1 shipped a public Firebase Web SDK config in the frontend, which let anyone who viewed the page source read your chat database directly, bypassing login. As of v4.2.1, the frontend talks only to your Render backend over an authenticated connection — Firestore is never reachable from the browser. If you're on an older version, update and follow the revised [Firebase Setup](firebase-setup.md) and [Frontend Setup](setup-frontend.md) steps.
 !!!
 
 !!!success Is this safe to use?
