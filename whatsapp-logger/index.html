@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.840962331306">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="4.6.0.841285350652">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 4.6.0">
@@ -37,11 +37,11 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../resources/css/retype.css?v=4.6.0.840962331306" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=4.6.0.841285350652" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=4.6.0.840962331306" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=4.6.0.841285350652" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=4.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.6.0.840962331306" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=4.6.0.841285350652" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="retype-app" class="relative text-base antialiased text-base-text bg-base-bg font-body">
@@ -207,23 +207,14 @@
                 <!-- Page content  -->
 <h1 id="whatsapp-logger-self-hosted">WhatsApp Logger (Self-Hosted)</h1>
 <p>A privacy-focused, self-hosted WhatsApp archiving tool. It captures messages — including deleted ones — via a linked device connection and stores them in your own Firebase Firestore database.</p>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-warning"></div>
-    <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="block text-callout-warning" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
-                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>Security update in v4.2.1</h5>
-<p>Versions before v4.2.1 shipped a public Firebase Web SDK config in the frontend, which let anyone who viewed the page source read your chat database directly, bypassing login. As of v4.2.1, the frontend talks only to your Render backend over an authenticated connection — Firestore is never reachable from the browser. If you&#x27;re on an older version, update and follow the revised <a href="firebase-setup/">Firebase Setup</a> and <a href="setup-frontend/">Frontend Setup</a> steps.</p>
-        </div>
-    </div>
-</div>
+<h2 id="upgrade-notes-v42x">Upgrade notes (v4.2.x)</h2>
+<p>If you&#x27;re updating from an older version, here&#x27;s everything that changed across the v4.2.x line in one place:</p>
+<ul>
+<li><strong>v4.2.1 — Security fix.</strong> Removed the public Firebase Web SDK config from the frontend. The frontend now only talks to your Render backend, never Firestore directly. Update your Firestore rules to deny all direct client access, as shown in <a href="firebase-setup/">Firebase Setup</a>.</li>
+<li><strong>v4.2.2 — Real-time sync now covers every chat, not just the one you have open.</strong> Previously, new messages only arrived for a chat you already had open — anything happening in other chats sat on the server until you clicked into them. Now a single sync connection streams updates for <em>all</em> chats at once, so incoming messages show up across every contact the moment they arrive, the way WhatsApp itself behaves when your phone comes back online.</li>
+<li><strong>v4.2.2 — Full resync with real progress.</strong> <code translate="no" v-pre>Settings</code> → refresh icon → <code translate="no" v-pre>Hard Reset</code> now pulls your entire message history chat-by-chat instead of one giant download, so the progress bar reflects actual messages fetched instead of a rough guess. Use this if you ever open a chat that shows nothing locally even though the server has history for it — for example after clearing site data, or on a new device or browser.</li>
+<li><strong>UI refresh.</strong> Reworked to three selectable themes — Catppuccin Latte (light), Catppuccin Mocha (dark), and a true-black AMOLED theme — replacing the old dark-mode toggle and the multiple chat-background picker. Find it under <code translate="no" v-pre>Settings</code> → <code translate="no" v-pre>Appearance</code> → <code translate="no" v-pre>Theme</code>.</li>
+</ul>
 <div class="flex mb-6">
     <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-callout-success"></div>
     <div class="flex w-full py-4 border border-l-0 rounded-tr-lg rounded-br-lg doc-callout bg-callout-base-bg border-callout-base-border" role="alert">
