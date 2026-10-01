@@ -1,11 +1,14 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "maple",
   "name": "Amit's Docs",
   "colors": {
     "primary": "#0F766E",
     "light": "#2DD4BF",
     "dark": "#0F766E"
+  },
+  "background": {
+    "decoration": "grid"
   },
   "favicon": "/favicon.svg",
   "logo": {
