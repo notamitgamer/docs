@@ -1,0 +1,126 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Amit's Docs",
+  "colors": {
+    "primary": "#0F766E",
+    "light": "#2DD4BF",
+    "dark": "#0F766E"
+  },
+  "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://docs.amit.is-a.dev"
+  },
+  "icons": {
+    "library": "lucide"
+  },
+  "navigation": {
+    "groups": [
+      {
+        "group": "Home",
+        "icon": "house",
+        "pages": [
+          "index"
+        ]
+      },
+      {
+        "group": "WhatsApp Logger",
+        "icon": "messages-square",
+        "pages": [
+          "whatsapp-logger/index",
+          "whatsapp-logger/prerequisites",
+          "whatsapp-logger/firebase-setup",
+          "whatsapp-logger/deploy-backend",
+          "whatsapp-logger/connect-whatsapp",
+          "whatsapp-logger/setup-frontend",
+          "whatsapp-logger/usage",
+          "whatsapp-logger/keep-alive",
+          "whatsapp-logger/troubleshooting",
+          "whatsapp-logger/faqs"
+        ]
+      },
+      {
+        "group": "Git Mirror",
+        "icon": "git-fork",
+        "pages": [
+          "git-mirror/index",
+          "git-mirror/deploy",
+          "git-mirror/customization",
+          "git-mirror/build-process"
+        ]
+      },
+      {
+        "group": "Mojic",
+        "icon": "lock",
+        "pages": [
+          "mojic/index",
+          "mojic/installation",
+          "mojic/usage",
+          "mojic/algorithm"
+        ]
+      },
+      {
+        "group": "Githrun",
+        "icon": "terminal",
+        "pages": [
+          "githrun/index",
+          "githrun/cli-usage",
+          "githrun/cli-auth-and-tools",
+          "githrun/cli-find-download",
+          "githrun/python-api",
+          "githrun/vscode-extension",
+          "githrun/configuration"
+        ]
+      },
+      {
+        "group": "Veyrix IDE",
+        "icon": "app-window",
+        "pages": [
+          "veyrix/index",
+          "veyrix/usage-guide",
+          "veyrix/architecture",
+          "veyrix/security",
+          "veyrix/veyrix-web",
+          "veyrix/performance",
+          "veyrix/roadmap",
+          "veyrix/faq"
+        ]
+      },
+      {
+        "group": "OSMA",
+        "icon": "package",
+        "pages": [
+          "osma/index",
+          "osma/quickstart",
+          "osma/npm-api",
+          "osma/pypi-api",
+          "osma/utility",
+          "osma/notes"
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Website",
+        "href": "https://amit.is-a.dev"
+      },
+      {
+        "label": "Sponsor",
+        "href": "https://github.com/sponsors/notamitgamer"
+      }
+    ],
+    "primary": {
+      "type": "github",
+      "href": "https://github.com/notamitgamer/docs"
+    }
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/notamitgamer"
+    }
+  }
+}
