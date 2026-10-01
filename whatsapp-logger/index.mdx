@@ -1,0 +1,51 @@
+---
+title: "WhatsApp Logger (Self-Hosted)"
+sidebarTitle: "WhatsApp Logger"
+---
+
+A privacy-focused, self-hosted WhatsApp archiving tool. It captures messages — including deleted ones — via a linked device connection and stores them in your own Firebase Firestore database.
+
+## Upgrade notes (v4.2.x)
+
+If you're updating from an older version, here's everything that changed across the v4.2.x line in one place:
+
+- **v4.2.1 — Security fix.** Removed the public Firebase Web SDK config from the frontend. The frontend now only talks to your Render backend, never Firestore directly. Update your Firestore rules to deny all direct client access, as shown in [Firebase Setup](/whatsapp-logger/firebase-setup).
+- **v4.2.2 — Real-time sync now covers every chat, not just the one you have open.** Previously, new messages only arrived for a chat you already had open — anything happening in other chats sat on the server until you clicked into them. Now a single sync connection streams updates for *all* chats at once, so incoming messages show up across every contact the moment they arrive, the way WhatsApp itself behaves when your phone comes back online.
+- **v4.2.2 — Full resync with real progress.** `Settings` → refresh icon → `Hard Reset` now pulls your entire message history chat-by-chat instead of one giant download, so the progress bar reflects actual messages fetched instead of a rough guess. Use this if you ever open a chat that shows nothing locally even though the server has history for it — for example after clearing site data, or on a new device or browser.
+- **UI refresh.** Reworked to three selectable themes — Catppuccin Latte (light), Catppuccin Mocha (dark), and a true-black AMOLED theme — replacing the old dark-mode toggle and the multiple chat-background picker. Find it under `Settings` → `Appearance` → `Theme`.
+
+<Check>
+**Is this safe to use?**
+
+Yes. WhatsApp bans accounts for *sending* spam or unauthorized automated messages — this tool is a **100% passive, read-only listener**. It connects using the official Multi-Device WebSocket protocol, the same way linking a second browser to WhatsApp Web works. Since it doesn't interact with anyone, there's no risk of being reported.
+</Check>
+
+## Features
+
+- **Anti-Delete** — messages are logged instantly, so they're preserved even if the sender deletes them
+- **Privacy first** — you host the backend and database; no third-party servers touch your data
+- **Secure access** — the frontend is password-protected against your own backend
+- **Search & filter** — search by content or filter by date
+- **Export** — download chat logs as `.txt` files
+- **Offline ready** — IndexedDB caching lets you read logs without an internet connection
+
+## Recommended setup
+
+- Install the web app as a **PWA** after publishing it, for better security and a native feel
+- Enable **PIN or biometric authentication** inside the web app (Settings)
+
+## Get started
+
+- [Prerequisites & Architecture](/whatsapp-logger/prerequisites)
+- [Step 1 — Firebase Setup](/whatsapp-logger/firebase-setup)
+- [Step 2 — Deploy the Backend](/whatsapp-logger/deploy-backend)
+- [Step 3 — Connect WhatsApp](/whatsapp-logger/connect-whatsapp)
+- [Step 4 — Setup the Frontend](/whatsapp-logger/setup-frontend)
+- [Step 5 — Usage](/whatsapp-logger/usage)
+- [Step 6 — Keep it Alive](/whatsapp-logger/keep-alive)
+- [Troubleshooting](/whatsapp-logger/troubleshooting)
+- [Frequently Asked Questions](/whatsapp-logger/faqs)
+
+## Disclaimer
+
+This tool is for personal archiving purposes. Using it to log conversations without consent may violate privacy laws in your jurisdiction. The author is not responsible for misuse.
