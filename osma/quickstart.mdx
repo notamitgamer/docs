@@ -2,6 +2,8 @@
 title: "Quick Start"
 ---
 
+import Copyright from "/snippets/copyright.mdx";
+
 OSMA has fully open CORS and requires no authentication keys, so you can start fetching package data immediately — from a backend script, a CLI tool, or directly inside a browser application.
 
 ## JavaScript (browser & Node.js)
@@ -73,3 +75,5 @@ curl -s "https://notamitgamer-osma-npm-api.hf.space/search?q=express&limit=3" | 
 
 These endpoints are subject to the standard free-tier rate limits (10 requests/minute, 100/hour). If you're writing a script that loops through hundreds of packages, you'll need an `X-Bypass-Token` — see [Utility Endpoints](/osma/utility).
 </Info>
+
+<Copyright />

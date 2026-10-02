@@ -3,6 +3,8 @@ title: "Veyrix Web (Multi-File IDE)"
 sidebarTitle: "Veyrix Web (Multi-File)"
 ---
 
+import Copyright from "/snippets/copyright.mdx";
+
 Veyrix Web (`web.html`) is an advanced, multi-file environment built specifically for web development. Unlike the single-file main IDE, it uses a robust virtual file system with directory structures, multi-tab editing, and an integrated real-time preview window.
 
 ## Isolated database (VeyrixWebFS)
@@ -35,3 +37,5 @@ Unlike the main IDE (flat single files), Veyrix Web lets you export your entire 
 
 - **Combine HTML** — leverages the PreviewEngine to bundle all CSS, JavaScript, and Base64 images into a single monolithic `index.html`. Good for quick sharing or embedding in systems that don't support multi-file directories.
 - **ZIP archive export** — dynamically loads the `JSZip` library only when requested, maps over the virtual file system, constructs a standard directory structure, and outputs a downloadable `.zip` preserving all relative paths and binary formats.
+
+<Copyright />

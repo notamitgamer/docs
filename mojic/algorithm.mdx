@@ -3,6 +3,8 @@ title: "Under the Hood: Operation Ironclad"
 sidebarTitle: "How It Works"
 ---
 
+import Copyright from "/snippets/copyright.mdx";
+
 Mojic v2.1.0 implements a custom crypto-system dubbed "Operation Ironclad."
 
 ## 1. Derivation phase
@@ -31,3 +33,5 @@ The whitened data is buffered into 5-byte chunks, treated as a single large inte
 ## 6. The header
 
 The salt and a 4-byte auth check are written to the file header using the Moon/Clock alphabet (`🌑🌒🌓🌔...`). This lets Mojic report "Incorrect Password" instantly, rather than churning out garbage data first.
+
+<Copyright />

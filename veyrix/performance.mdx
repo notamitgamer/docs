@@ -3,6 +3,8 @@ title: "Performance & Benchmarks"
 sidebarTitle: "Performance & Errors"
 ---
 
+import Copyright from "/snippets/copyright.mdx";
+
 By stripping away Webpack overhead, Virtual DOM reconciliation, and heavy language servers, Veyrix operates on a fraction of the hardware requirements of modern cloud IDEs.
 
 | Environment | Base RAM (idle) | Editor engine | Time to interactive |
@@ -26,3 +28,5 @@ Safari and Firefox frequently restrict or completely block IndexedDB access in P
 ## DOMException: QuotaExceededError
 
 Triggered when the device runs out of disk space, or the browser's origin quota is exceeded. Veyrix catches this in the `DB.save()` promise rejection, halting autosave and notifying the user to clear space or delete older snapshots.
+
+<Copyright />

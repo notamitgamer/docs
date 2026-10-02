@@ -3,6 +3,8 @@ title: "Architecture & State Management"
 sidebarTitle: "Architecture & State"
 ---
 
+import Copyright from "/snippets/copyright.mdx";
+
 ## Visual system design
 
 Data flows through three strictly isolated layers:
@@ -61,3 +63,5 @@ Compresses the payload with `LZString.compressToEncodedURIComponent`, yielding a
 ### 2. Cloud share (Firestore)
 
 Authenticates using `signInAnonymously()`, pushes the payload to the `shared_snippets` root collection, and returns a lightweight document ID reference in the URL.
+
+<Copyright />

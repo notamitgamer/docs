@@ -2,6 +2,8 @@
 title: "How the Build Works"
 ---
 
+import Copyright from "/snippets/copyright.mdx";
+
 `build.sh` runs the whole pipeline, driven by GitHub Actions. Here's what it does, step by step.
 
 ## 1. Setup & metadata
@@ -45,3 +47,5 @@ For every public repo (minus the filtered ones):
 - Generates a styled `404.html`
 
 The final output lands in `./site`, ready to be deployed via GitHub Pages.
+
+<Copyright />

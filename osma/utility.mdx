@@ -2,6 +2,8 @@
 title: "Utility Endpoints"
 ---
 
+import Copyright from "/snippets/copyright.mdx";
+
 These endpoints are available on both the NPM and PyPI APIs. Examples below use the NPM base URL.
 
 ## GET /debug-ip
@@ -35,3 +37,5 @@ curl "https://notamitgamer-osma-npm-api.hf.space/get-bypass?secret=YOUR_SECRET_H
 ## GET /rebuild
 
 Forces the server to re-download the latest CSV dataset from HuggingFace and rebuild the SQLite database in the background. Requires the `secret` parameter. Responds with `503` while rebuilding.
+
+<Copyright />

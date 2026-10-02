@@ -3,6 +3,8 @@ title: "Step 2: Deploy Backend (The Listener)"
 sidebarTitle: "2. Deploy Backend"
 ---
 
+import Copyright from "/snippets/copyright.mdx";
+
 1. **Fork the repository** to your own GitHub account: [WhatsApp-Logger-Self-Hosted-](https://github.com/notamitgamer/WhatsApp-Logger-Self-Hosted-)
 2. Log in to [Render](https://render.com/).
 3. Click **New +** → **Web Service**.
@@ -53,3 +55,5 @@ module.exports = {
 `EXCLUDED_JIDS` is a set of full JIDs (the `...@s.whatsapp.net` / `...@g.us` / `...@lid` identifiers, not just a phone number) that are skipped entirely — they won't be cached, streamed, or included in exports. It ships empty by default. You can find a chat's exact JID from the live server logs (see the tip above) the first time it logs a message, then add it here, e.g. `new Set(['917278779512@s.whatsapp.net', '201554426618024@lid'])`, and redeploy.
 
 Continue to [Connect WhatsApp](/whatsapp-logger/connect-whatsapp).
+
+<Copyright />

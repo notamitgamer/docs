@@ -3,6 +3,8 @@ title: "Cryptography & Security Model"
 sidebarTitle: "Security & Threat Model"
 ---
 
+import Copyright from "/snippets/copyright.mdx";
+
 ## Zero-knowledge cloud password protection
 
 When a user applies a password to a Cloud Share snippet, the plaintext password is **never** transmitted to Firebase. Veyrix uses the native Web Crypto API to generate a SHA-256 hash locally instead:
@@ -30,3 +32,5 @@ Veyrix is an editor, not an evaluator. The Ace Editor parses content into Abstra
 ### 3. Cloud anonymity
 
 Firebase interactions use `signInAnonymously()`. Data is tied to a temporary, anonymous session UID. Firebase Security Rules are assumed to enforce read/write access correctly based on the snippet UID, but shared URLs are considered semi-public unless protected with the SHA-256 password hash described above.
+
+<Copyright />
