@@ -9,9 +9,9 @@ import Copyright from "/snippets/copyright.mdx";
 
 Data flows through three strictly isolated layers:
 
-- **Presentation layer** — Ace Editor & vanilla DOM UI, reading via `state.editor.getValue()`
-- **Local persistence** — IndexedDB (`VeyrixFS`), written via `DB.save(state.files)`
-- **Cloud share (lazy)** — Firebase Firestore, written via `addDoc(shared_snippets)` — only touched when the user explicitly shares to the cloud
+- **Presentation layer**: Ace Editor & vanilla DOM UI, reading via `state.editor.getValue()`
+- **Local persistence**: IndexedDB (`VeyrixFS`), written via `DB.save(state.files)`
+- **Cloud share (lazy)**: Firebase Firestore, written via `addDoc(shared_snippets)`, only touched when the user explicitly shares to the cloud
 
 ## State management pattern
 

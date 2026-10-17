@@ -36,7 +36,7 @@ Before editing, the line in `js/config.js` looks like this:
 const RENDER_BACKEND_URL = ""; // <-- PUT YOUR RENDER URL HERE
 ```
 
-That's the only setting needed. As of v4.2.1, the frontend has no Firebase configuration of its own — it authenticates against your Render backend (`/api/verify`) and gets a session token back, then uses that token for every chat/message request over Server-Sent Events. Firebase credentials only ever live on the backend, set in [Deploy the Backend](/whatsapp-logger/deploy-backend).
+That's the only setting needed. As of v4.2.1, the frontend has no Firebase configuration of its own. It authenticates against your Render backend (`/api/verify`) and gets a session token back, then uses that token for every chat/message request over Server-Sent Events. Firebase credentials only ever live on the backend, set in [Deploy the Backend](/whatsapp-logger/deploy-backend).
 
 ## Frontend file layout
 

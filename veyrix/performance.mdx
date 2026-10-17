@@ -15,9 +15,9 @@ By stripping away Webpack overhead, Virtual DOM reconciliation, and heavy langua
 
 ## Why it's better for mobile / low-end devices
 
-- **Debounced I/O** — IndexedDB writes are debounced by 500ms, ensuring zero main-thread blockage during rapid typing
-- **No Monaco overhead** — Monaco is powerful but struggles on low-end Androids due to heavy worker threading; Ace Editor is substantially lighter
-- **Visual viewport anchoring** — PWA implementations often suffer layout thrashing when the soft keyboard appears; Veyrix anchors directly to the `window.visualViewport` API, freezing the reflow
+- **Debounced I/O**: IndexedDB writes are debounced by 500ms, ensuring zero main-thread blockage during rapid typing
+- **No Monaco overhead**: Monaco is powerful but struggles on low-end Androids due to heavy worker threading; Ace Editor is substantially lighter
+- **Visual viewport anchoring**: PWA implementations often suffer layout thrashing when the soft keyboard appears; Veyrix anchors directly to the `window.visualViewport` API, freezing the reflow
 
 # Error Handling Behavior
 

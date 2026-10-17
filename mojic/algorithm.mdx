@@ -11,7 +11,7 @@ Mojic v2.1.0 implements a custom crypto-system dubbed "Operation Ironclad."
 
 - **Input:** user password + 32-byte random salt
 - **KDF:** `Scrypt` (N=16384, r=8, p=1)
-- **Output:** 80 bytes — 32 bytes AES key, 16 bytes AES IV, 32 bytes HMAC auth key
+- **Output:** 80 bytes (32 bytes AES key, 16 bytes AES IV, 32 bytes HMAC auth key)
 
 ## 2. The Emoji Universe
 
@@ -20,11 +20,11 @@ The engine generates a universe of roughly 1,100 valid unicode characters (emoti
 ## 3. Polymorphic encryption
 
 - **C keywords:** the engine detects C keywords (e.g. `while`) and assigns each one a "base emoji" from the shuffled universe.
-- **The twist:** it doesn't just print the base emoji — it calculates a random offset using the PRNG to pick a *different* emoji that still maps back to the keyword. That means `int` might render as 🚀 on line 1 and 🌮 on line 5, making frequency analysis useless.
+- **The twist:** it doesn't just print the base emoji. It calculates a random offset using the PRNG to pick a *different* emoji that still maps back to the keyword. That means `int` might render as 🚀 on line 1 and 🌮 on line 5, making frequency analysis useless.
 
 ## 4. XOR whitening
 
-Before encoding non-keyword data (variable names, strings, whitespace), the engine generates a random mask from the AES stream and XORs the raw data with it. This turns repetitive patterns — like indentation or common variable names — into white noise before they're converted to emojis.
+Before encoding non-keyword data (variable names, strings, whitespace), the engine generates a random mask from the AES stream and XORs the raw data with it. This turns repetitive patterns, like indentation or common variable names, into white noise before they're converted to emojis.
 
 ## 5. Base-1024 encoding
 
