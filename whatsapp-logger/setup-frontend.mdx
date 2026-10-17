@@ -5,25 +5,53 @@ sidebarTitle: "4. Setup Frontend"
 
 import Copyright from "/snippets/copyright.mdx";
 
-1. Download `index.html` from the repository.
-2. Open it in a text editor.
-3. Find the configuration line near the top of the `<script>` block. Before editing, it looks like this:
+Pick the option that matches how you host the frontend.
+
+## Option A: Fork + auto-deploy (most common)
+
+1. Open your **fork** on GitHub and go to **`js/config.js`**. Click the pencil icon (**Edit this file**). It's a tiny file with a big `EDIT THIS ONE LINE` banner, so it's hard to miss.
+2. Paste your Render URL between the quotes, e.g. `https://your-app.onrender.com` (**no trailing slash**).
+3. Click **Commit changes**. If your hosting provider is connected to your fork and auto-deploys, it redeploys on its own and there's nothing to upload. Leave the file as it is afterwards.
+
+<Tip>
+Updating an existing fork from v4.2.x? Click **Sync fork** → **Update branch**. If GitHub reports a conflict on `index.html` (your old URL edit), discard your fork's change, then set the URL in `js/config.js` as above. Future updates won't conflict.
+</Tip>
+
+## Option B: Self-host manually
+
+1. Download the repository (**Code** → **Download ZIP**) or clone it. The frontend is `index.html` plus the `css/` and `js/` folders. Keep them together.
+2. Open **`js/config.js`** in a text editor. It's a tiny file with a big `EDIT THIS ONE LINE` banner, so it's hard to miss.
+3. Fill in `RENDER_BACKEND_URL` with your Render URL, e.g. `https://your-app.onrender.com` (**no trailing slash**).
+4. Take these files and deploy them with whichever hosting provider you use. How to deploy is up to your provider:
+
+- `index.html`
+- `css/` and `js/` folders
+- `sw.js` and `manifest.json` (for the installable PWA)
+
+## The setting (both options)
+
+Before editing, the line in `js/config.js` looks like this:
 
 ```javascript
-const RENDER_BACKEND_URL = "";
+const RENDER_BACKEND_URL = ""; // <-- PUT YOUR RENDER URL HERE
 ```
-
-4. Fill in your Render URL, e.g. `https://your-app.onrender.com` (**no trailing slash**).
 
 That's the only setting needed. As of v4.2.1, the frontend has no Firebase configuration of its own — it authenticates against your Render backend (`/api/verify`) and gets a session token back, then uses that token for every chat/message request over Server-Sent Events. Firebase credentials only ever live on the backend, set in [Deploy the Backend](/whatsapp-logger/deploy-backend).
 
-## Deploy the frontend
+## Frontend file layout
 
-You can host this single file anywhere:
+```text
+index.html        page markup (sidebar, chat area, modals)
+css/              themes, layout, modals
+js/config.js      the only file you need to edit
+js/*.js           app code, split by feature (boot, lock screen, SSE sync, chat UI, calendar, ...)
+sw.js             service worker (offline support)
+manifest.json     PWA manifest
+```
 
-- **Firebase Hosting** (recommended): `firebase init` → Hosting → select `public` directory → put `index.html` there → `firebase deploy`
-- **GitHub Pages**: enable Pages in your repo settings
-- **Netlify / Vercel**: drag and drop the folder containing `index.html`
+<Warning>
+The scripts are plain `<script>` files that share one global scope, so the load order in `index.html` matters. If you add a file, add it to the list at the bottom of `index.html` and to `ASSETS` in `sw.js`.
+</Warning>
 
 Continue to [Usage](/whatsapp-logger/usage).
 

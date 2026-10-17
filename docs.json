@@ -41,7 +41,8 @@
           "whatsapp-logger/usage",
           "whatsapp-logger/keep-alive",
           "whatsapp-logger/troubleshooting",
-          "whatsapp-logger/faqs"
+          "whatsapp-logger/faqs",
+          "whatsapp-logger/changelog"
         ]
       },
       {
