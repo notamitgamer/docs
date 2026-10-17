@@ -8,7 +8,7 @@ import Copyright from "/snippets/copyright.mdx";
 
 ## GET /ping
 
-Uptime check — always returns 200. Lightweight endpoint for UptimeRobot or health monitors; doesn't query the database.
+Uptime check: always returns 200. Lightweight endpoint for UptimeRobot or health monitors; doesn't query the database.
 
 ```bash
 curl https://notamitgamer-osma-pypi-api.hf.space/ping
@@ -45,7 +45,7 @@ curl https://notamitgamer-osma-pypi-api.hf.space/stats
 {
   "total_pypi_packages": 780432,
   "source": "pypi.org",
-  "note": "Snapshot dataset — updated periodically."
+  "note": "Snapshot dataset, updated periodically."
 }
 ```
 
@@ -55,7 +55,7 @@ Paginated package list, ordered by `package_no`.
 
 | Parameter | Type | Default | Max | Required | Description |
 |---|---|---|---|---|---|
-| `page` | integer | 1 | — | optional | Page number, 1-indexed |
+| `page` | integer | 1 | - | optional | Page number, 1-indexed |
 | `limit` | integer | 200 | 500 | optional | Rows per page |
 
 ```bash
@@ -78,7 +78,7 @@ Ranked search across all packages. `0` = exact match, `1` = starts-with, `2` = c
 
 | Parameter | Type | Default | Max | Required | Description |
 |---|---|---|---|---|---|
-| `q` | string | — | 100 chars | required | Search query, min 2 characters |
+| `q` | string | - | 100 chars | required | Search query, min 2 characters |
 | `limit` | integer | 250 | 500 | optional | Max results to return |
 
 ```bash

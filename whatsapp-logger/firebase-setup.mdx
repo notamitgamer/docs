@@ -16,7 +16,7 @@ import Copyright from "/snippets/copyright.mdx";
 
 ## Set security rules
 
-Go to the **Rules** tab in Firestore and replace the rules with the following. As of v4.2.1, the frontend never talks to Firestore directly — it only talks to your Render backend, which uses the Admin SDK (which always bypasses these rules regardless of what they say). So there's no reason for any client-side reads or writes to be allowed:
+Go to the **Rules** tab in Firestore and replace the rules with the following. As of v4.2.1, the frontend never talks to Firestore directly. It only talks to your Render backend, which uses the Admin SDK (which always bypasses these rules regardless of what they say). So there's no reason for any client-side reads or writes to be allowed:
 
 ```javascript
 rules_version = '2';
@@ -35,7 +35,7 @@ service cloud.firestore {
 <Danger>
 **If you're upgrading from an older version**
 
-Earlier versions of this project shipped a public `firebaseConfig` in the frontend with permissive `allow read: if true` rules — this let anyone who inspected the page source read your entire chat database directly, bypassing the login screen. If you're on v4.2.1 or later, switch to the rules above and make sure your `index.html` has no `firebaseConfig` or Firebase SDK `<script>` tags left in it (see [Setup the Frontend](/whatsapp-logger/setup-frontend)).
+Earlier versions of this project shipped a public `firebaseConfig` in the frontend with permissive `allow read: if true` rules. This let anyone who inspected the page source read your entire chat database directly, bypassing the login screen. If you're on v4.2.1 or later, switch to the rules above and make sure your `index.html` has no `firebaseConfig` or Firebase SDK `<script>` tags left in it (see [Setup the Frontend](/whatsapp-logger/setup-frontend)).
 </Danger>
 
 ## Get backend credentials (service account)
@@ -47,10 +47,10 @@ Earlier versions of this project shipped a public `firebaseConfig` in the fronte
 <Danger>
 **Keep this safe**
 
-This file grants admin access to your database. You'll paste its contents into a Render environment variable in the next step — never commit it to a public repo.
+This file grants admin access to your database. You'll paste its contents into a Render environment variable in the next step. Never commit it to a public repo.
 </Danger>
 
-That's everything you need from Firebase — the frontend doesn't need any Firebase configuration at all. It only ever talks to your Render backend, which uses the service account credentials above.
+That's everything you need from Firebase. The frontend doesn't need any Firebase configuration at all. It only ever talks to your Render backend, which uses the service account credentials above.
 
 Continue to [Deploy the Backend](/whatsapp-logger/deploy-backend).
 

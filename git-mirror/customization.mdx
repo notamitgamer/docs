@@ -6,7 +6,7 @@ import Copyright from "/snippets/copyright.mdx";
 
 ## Filter repositories
 
-Open `build.sh` and find the `gh repo list` command. The `select` statement controls which repos are excluded — by default it skips `git-mirror`, `register`, and `osma`:
+Open `build.sh` and find the `gh repo list` command. The `select` statement controls which repos are excluded: by default it skips `git-mirror`, `register`, and `osma`:
 
 ```bash
 REPOS_JSON=$(gh repo list "$USERNAME" --visibility=public --limit 100 --json name,description -q '.[] | select(.name != "git-mirror" and .name != "register" and .name != "osma")')
