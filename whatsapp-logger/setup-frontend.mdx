@@ -11,7 +11,7 @@ Pick the option that matches how you host the frontend.
 
 1. Open your **fork** on GitHub and go to **`js/config.js`**. Click the pencil icon (**Edit this file**). It's a tiny file with a big `EDIT THIS ONE LINE` banner, so it's hard to miss.
 2. Paste your Render URL between the quotes, e.g. `https://your-app.onrender.com` (**no trailing slash**).
-3. Click **Commit changes**. If your fork is connected to GitHub Pages, Netlify, Vercel or Firebase, it redeploys on its own and there's nothing to upload. Leave the file as it is afterwards.
+3. Click **Commit changes**. If your hosting provider is connected to your fork and auto-deploys, it redeploys on its own and there's nothing to upload. Leave the file as it is afterwards.
 
 <Tip>
 Updating an existing fork from v4.2.x? Click **Sync fork** → **Update branch**. If GitHub reports a conflict on `index.html` (your old URL edit), discard your fork's change, then set the URL in `js/config.js` as above. Future updates won't conflict.
@@ -22,11 +22,11 @@ Updating an existing fork from v4.2.x? Click **Sync fork** → **Update branch**
 1. Download the repository (**Code** → **Download ZIP**) or clone it. The frontend is `index.html` plus the `css/` and `js/` folders. Keep them together.
 2. Open **`js/config.js`** in a text editor. It's a tiny file with a big `EDIT THIS ONE LINE` banner, so it's hard to miss.
 3. Fill in `RENDER_BACKEND_URL` with your Render URL, e.g. `https://your-app.onrender.com` (**no trailing slash**).
-4. Host the whole frontend folder (`index.html`, `css/`, `js/`, plus `sw.js` and `manifest.json` for the installable PWA) on any static host:
+4. Take these files and deploy them with whichever hosting provider you use. How to deploy is up to your provider:
 
-- **Firebase Hosting** (recommended): `firebase init` → Hosting → select `public` directory → copy `index.html`, `css/` and `js/` there → `firebase deploy`
-- **GitHub Pages**: enable Pages in your repo settings
-- **Netlify / Vercel**: drag and drop the folder containing `index.html`
+- `index.html`
+- `css/` and `js/` folders
+- `sw.js` and `manifest.json` (for the installable PWA)
 
 ## The setting (both options)
 
