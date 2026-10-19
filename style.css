@@ -12,3 +12,32 @@
   font-size: 0.875rem;
   line-height: 1.4;
 }
+
+/* Borderless cards: rounded image, plain text below, no box */
+.project-cards .card,
+.project-cards a.card {
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  --tw-ring-color: transparent !important;
+}
+.project-cards .card:hover {
+  border: 0 !important;
+}
+.project-cards .card img {
+  border-radius: 1rem;
+  transition: opacity 0.15s ease;
+}
+.project-cards .card:hover img {
+  opacity: 0.9;
+}
+.project-cards .card [class*="px-"] {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.project-cards .card [class*="py-"] {
+  padding-top: 0.75rem !important;
+  padding-bottom: 0 !important;
+}
