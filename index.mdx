@@ -12,7 +12,8 @@ description: "Centralized documentation for Amit's projects. Pick one below to g
 
 <div className="mx-auto max-w-5xl px-6 pb-20">
 
-<CardGroup cols={2}>
+<div className="project-cards">
+<CardGroup cols={3}>
   <Card title="WhatsApp Logger" icon="messages-square" href="/whatsapp-logger" img="/images/cards/whatsapp-logger.svg">
     Privacy-focused, self-hosted WhatsApp archiving tool. Captures messages, including deleted ones, via a linked device connection and stores them in your own Firebase database.
   </Card>
@@ -32,6 +33,7 @@ description: "Centralized documentation for Amit's projects. Pick one below to g
     Lightning-fast, static search archive for querying NPM and PyPI packages, bypassing live registry bottlenecks with frozen snapshots and a FastAPI + SQLite backend.
   </Card>
 </CardGroup>
+</div>
 
 <p className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">Copyright © 2025–2026 <a href="https://github.com/notamitgamer" target="_blank" rel="noopener noreferrer">Amit Dutta</a></p>
 

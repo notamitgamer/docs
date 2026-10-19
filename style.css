@@ -1,0 +1,16 @@
+/* Compact project cards on the home page */
+.project-cards img {
+  height: 88px;
+  width: 100%;
+  object-fit: cover;
+}
+.project-cards p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.4;
+}
+@media (max-width: 1024px) {
+  .project-cards img { height: 72px; }
+}
