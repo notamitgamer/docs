@@ -1,0 +1,61 @@
+---
+title: "API reference"
+sidebarTitle: "API reference"
+---
+
+import Copyright from "/snippets/copyright.mdx";
+
+These are the endpoints the web app uses. They are not a stable public API and may change between versions.
+
+## Authentication
+
+Endpoints marked **Owner** need a Firebase ID token in the `Authorization` header:
+
+```
+Authorization: Bearer <firebase-id-token>
+```
+
+The token must belong to the account in `MAILBOX_OWNER_EMAIL`, and that email must be verified. Mail endpoints take an optional `folder` query parameter, either `inbox` (the default) or `sent`.
+
+| Status | Meaning |
+|---|---|
+| `401` | No token, or an invalid or expired one |
+| `403` | The account is not the mailbox owner |
+| `429` | Hourly send limit reached |
+| `503` | The mailbox is not configured |
+
+## Public endpoints
+
+| Method and path | Purpose |
+|---|---|
+| `GET /ping` | Health check. Returns a short text reply |
+| `GET /api/config` | Non-secret settings the app needs to start: Firebase web config, your aliases, the display name and the VAPID public key |
+| `POST /api/incoming` | The Resend webhook. The request is verified with the webhook signing secret |
+| `GET /api/push/mail/:id` | Reads one inbox mail. Needs the short-lived token from its push in the `x-push-token` header, otherwise `403` |
+
+## Owner endpoints: mail
+
+| Method and path | Purpose |
+|---|---|
+| `GET /api/mails` | List summaries, newest first. Query: `folder`, `limit` (1 to 100, default 30), `before` (millisecond timestamp for the next page). The inbox also returns the unread count |
+| `GET /api/mails/:id` | One full message |
+| `GET /api/sync` | Full messages for the offline cache. Query: `since` (only newer mail, oldest first), `before` (older page), `limit` (up to 50), `reconcile=1` (also returns counts and ids so deleted mail and read state catch up) |
+| `POST /api/mails/:id/read` | Mark as read |
+| `POST /api/mails/:id/unread` | Mark as unread |
+| `DELETE /api/mails/:id` | Delete permanently |
+| `POST /api/send` | Send a message. Body: `to`, `subject`, `html`, `text`, `replyToId`, `from`. Up to 20 recipients, about 1 MB per body, 50 sends per hour |
+| `POST /api/mails/:id/forward` | Forward a saved message. Body: `to` (up to 5 addresses) |
+
+## Owner endpoints: push
+
+| Method and path | Purpose |
+|---|---|
+| `POST /api/push/subscribe` | Save a device. Body: `subscription` |
+| `POST /api/push/unsubscribe` | Remove a device. Body: `endpoint` |
+| `POST /api/push/test` | Send a test notification to every saved device |
+
+## Data
+
+Mail is stored in three Firestore collections: `mails` (received), `sent` (sent and forwarded) and `pushSubs` (one document per device).
+
+<Copyright />
