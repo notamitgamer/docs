@@ -1,0 +1,45 @@
+---
+title: "Mail Server (Self-Hosted)"
+sidebarTitle: "Mail Server"
+---
+
+import Copyright from "/snippets/copyright.mdx";
+
+A small, self-hosted mailbox for your own domain. [Resend](https://resend.com) receives the mail, a Node.js server stores it in your own Firebase Firestore database, and an installable web app lets you read, reply, forward and send, with push notifications for new mail. Nothing is forwarded to a third-party inbox.
+
+<Tip>
+If this project is useful to you, please [give it a star on GitHub](https://github.com/notamitgamer/mail-server) ⭐ It takes two seconds and means a lot!
+</Tip>
+
+## How it works
+
+1. Someone emails one of your addresses. Resend receives it and calls your server's `/api/incoming` webhook.
+2. The server verifies the webhook signature, fetches and parses the raw message, and saves it in Firestore.
+3. A Web Push notification goes out to every device you have enabled notifications on.
+4. You open the web app, sign in with your Google account, and read or answer the mail. Replies and new mail are sent through Resend.
+
+## Features
+
+- **Your data, your database**: mail lives in your Firestore, and you host the server
+- **Mobile-first PWA**: installable, with an offline cache, swipe actions and pull to refresh
+- **Reply, forward and compose**: from any of your own addresses, with replies threaded in the recipient's mail app
+- **Push notifications**: a tap on a notification opens the message right away
+- **Single owner**: only one Google account can sign in, and the database is closed to everything except the server
+- **Extras**: save a message as PDF, print it, share it, or open it in the Resend dashboard
+
+## Get started
+
+- [Setup](/mail-server/setup): Firebase, Resend, keys and deployment
+- [Using the web app](/mail-server/usage): reading, composing, replying, forwarding
+- [Push notifications](/mail-server/push-notifications): how they work and device tips
+- [API reference](/mail-server/api): the endpoints behind the web app
+
+## Not built yet
+
+HTML templates and attachments on sent mail. Attachments are also not forwarded.
+
+## License
+
+Released under the [MIT License](https://github.com/notamitgamer/mail-server/blob/main/LICENSE). The interface is based on the MIT-licensed SmartMail template.
+
+<Copyright />

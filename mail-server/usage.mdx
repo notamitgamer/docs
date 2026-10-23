@@ -1,0 +1,38 @@
+---
+title: "Using the web app"
+sidebarTitle: "Usage"
+---
+
+import Copyright from "/snippets/copyright.mdx";
+
+Open your server's URL, sign in with the Google account set in `MAILBOX_OWNER_EMAIL`, and install the app to your home screen for the best experience.
+
+## Reading mail
+
+The inbox shows the newest mail first, and you can switch to the **Sent** folder. Opening a message marks it as read, and reads made offline are sent once you are back online. The app keeps a copy of your mail on the device, so you can read it offline, and it catches up with new, read and deleted mail the next time it is online. Pull down on the list to refresh.
+
+## Composing and replying
+
+- **From**: choose any address listed in `ALLOWED_ALIASES`
+- **To**: up to 20 recipients
+- **Replies** keep the conversation threaded in the recipient's mail app
+- **Limit**: the server allows 50 sent messages per hour, as protection if the sign-in were ever abused
+
+## Forwarding
+
+Forwarding sends the saved message as it is, with a standard "Forwarded message" header, to up to 5 addresses. It is sent from the address the mail arrived on, and a copy is filed under **Sent**. Attachments are not stored with the message, so they are not forwarded.
+
+## Message menu
+
+The three-dot menu in the reader offers:
+
+| Action | What it does |
+|---|---|
+| Reply, Forward | Answer the message or pass it on |
+| Mark as unread | Puts the message back in the unread list on all your devices |
+| Save as PDF, Print | Exports or prints the message |
+| Share | Uses the phone's share sheet, or copies the text. It is not a public link, and the mailbox stays private |
+| Open in Resend | Opens the message in the Resend dashboard (you need to be signed in to Resend) |
+| Delete | Removes the message from Firestore for good. Other devices drop their saved copy on their next refresh |
+
+<Copyright />

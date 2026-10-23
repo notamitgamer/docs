@@ -1,0 +1,100 @@
+---
+title: "Setup"
+sidebarTitle: "Setup"
+---
+
+import Copyright from "/snippets/copyright.mdx";
+
+This page takes you from nothing to a running mailbox. You need a domain you control, a [Resend](https://resend.com) account, a [Firebase](https://console.firebase.google.com) project and a place to run Node.js 18 or newer, such as [Render](https://render.com).
+
+## 1. Firebase
+
+1. Create a Firebase project and add a **Firestore** database.
+2. Go to **Authentication**, then **Sign-in method**, and enable **Google**.
+3. Go to **Authentication**, then **Settings**, then **Authorized domains**, and add the domain you will serve the app from (for example `mail.example.com`) and your `*.onrender.com` host if you use Render.
+4. Lock the database so that only the server can use it. Under **Firestore**, then **Rules**, paste:
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{db}/documents {
+    match /{doc=**} {
+      allow read, write: if false;
+    }
+  }
+}
+```
+
+5. Create a service-account key: **Project settings**, then **Service accounts**, then **Node.js**, then **Generate new private key**. You will paste this JSON into `FIREBASE_SERVICE_ACCOUNT`.
+6. Copy the web-app config: **Project settings**, then **Your apps**, then **Web**. You will paste it into `FIREBASE_WEB_CONFIG`.
+
+<Warning>
+The service-account JSON gives full access to your database. Keep it in your host's environment variables and never commit it.
+</Warning>
+
+## 2. Resend
+
+1. Add and verify your domain in Resend, and enable receiving mail for it.
+2. Create an API key with send and receive access. This is `RESEND_API_KEY`.
+3. After the server is deployed (step 4), add a **webhook** that points to `https://<your-domain>/api/incoming` for the `email.received` event.
+4. Copy the webhook's signing secret into `RESEND_WEBHOOK_SECRET`.
+
+## 3. Push keys
+
+Generate a pair of VAPID keys once, on any computer:
+
+```bash
+npx web-push generate-vapid-keys
+```
+
+The public key is `VAPID_PUBLIC_KEY` and the private key is `VAPID_PRIVATE_KEY`. Keep the private key secret. Without these keys mail still arrives, only the notification is skipped.
+
+## 4. Deploy
+
+On Render, create a **Web Service** from your fork of the repository:
+
+| Setting | Value |
+|---|---|
+| Language | Node |
+| Build command | `npm install` |
+| Start command | `npm start` |
+| Health check path | `/ping` |
+
+Add these **environment variables**:
+
+| Variable | Value |
+|---|---|
+| `RESEND_API_KEY` | Resend API key (send and receive access) |
+| `RESEND_WEBHOOK_SECRET` | Signing secret of the Resend webhook |
+| `ALLOWED_ALIASES` | Comma-separated addresses you receive on. They are also the allowed "From" addresses, and the first one is the default |
+| `MAILBOX_OWNER_EMAIL` | The one Google account allowed to sign in |
+| `FROM_NAME` | Optional display name on sent mail |
+| `FIREBASE_SERVICE_ACCOUNT` | Service-account JSON, raw or base64 |
+| `FIREBASE_WEB_CONFIG` | Web-app config as JSON: `{"apiKey":"...","authDomain":"...","projectId":"...","appId":"..."}` |
+| `VAPID_PUBLIC_KEY` | Public key from step 3 |
+| `VAPID_PRIVATE_KEY` | Private key from step 3 |
+| `VAPID_SUBJECT` | Optional contact, such as `mailto:you@example.com`. Defaults to the first alias |
+| `PORT` | Optional. Defaults to `3000` |
+
+<Note>
+Older deployments that use `PERSONAL_GMAIL` keep working, because it is used when `MAILBOX_OWNER_EMAIL` is not set. Rename it when convenient.
+</Note>
+
+## 5. Check that it works
+
+1. Open your server's URL and sign in with the account in `MAILBOX_OWNER_EMAIL`.
+2. Tap **Allow notifications**. A test notification is sent to confirm.
+3. Send an email to one of your addresses. It should appear in the inbox and trigger a notification.
+
+## Running locally
+
+Copy `.env.example` to `.env`, fill it in, and start the server. Node.js 20.6 or newer can read the file directly:
+
+```bash
+npm install
+node --env-file=.env server.js
+```
+
+On older versions, export the variables in your shell and run `npm start`.
+
+<Copyright />

@@ -1,0 +1,46 @@
+---
+title: "Push notifications"
+sidebarTitle: "Push notifications"
+---
+
+import Copyright from "/snippets/copyright.mdx";
+
+Notifications are required in the web app: after you sign in, it asks for permission and shows a full-screen prompt until they are on. Browsers that cannot do push, such as an iPhone browser tab, are not blocked. Every new mail triggers a Web Push to each device you have enabled, and the subscriptions are stored in the `pushSubs` Firestore collection.
+
+## Turning them on
+
+Open the installed app, sign in, and tap **Allow notifications**. A test notification is sent. After that the bell icon only shows the state, and tapping it sends another test.
+
+## How a tap opens the mail
+
+- A small mail (up to about 3.5 KB) travels inside the push itself.
+- Every push also carries a short-lived read token for that one mail.
+- The service worker saves the mail on the phone while it shows the notification.
+- If you tap before that has finished, the app opens the reader straight away and fetches just that mail with the token, with no sign-in and no sync.
+- Only if that is not possible, for example when the phone is offline, does the app sync first and then open the mail.
+
+## Offline phones
+
+The push service holds an undelivered notification for 7 days (`PUSH_TTL` in `server.js`) and delivers it when the phone reconnects, even if the app is closed.
+
+## Keeping it reliable
+
+The app re-checks its subscription on every start and whenever it comes back to the front, and starts over if the server's VAPID key has changed, so an update does not silently turn notifications off.
+
+## Device tips
+
+<Tip>
+**Android**
+
+Install the app from Chrome (**Install app**). On Vivo and Origin OS, also set the app's battery to **Unrestricted** (or allow "High background power consumption"), allow **Autostart** and background activity, and keep Chrome notifications on. Otherwise the system may hold pushes until the screen is turned on.
+</Tip>
+
+<Tip>
+**iPhone**
+
+Push only works after **Add to Home Screen** (iOS 16.4 or newer).
+</Tip>
+
+A phone stops being notified if its browser data is cleared. Open the app once and allow notifications again.
+
+<Copyright />

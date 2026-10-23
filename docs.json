@@ -103,6 +103,17 @@
           "osma/utility",
           "osma/notes"
         ]
+      },
+      {
+        "group": "Mail Server",
+        "icon": "mail",
+        "pages": [
+          "mail-server/index",
+          "mail-server/setup",
+          "mail-server/usage",
+          "mail-server/push-notifications",
+          "mail-server/api"
+        ]
       }
     ]
   },
