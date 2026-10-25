@@ -3,12 +3,20 @@
   "theme": "maple",
   "name": "Amit's Docs",
   "colors": {
-    "primary": "#0F766E",
-    "light": "#2DD4BF",
-    "dark": "#0F766E"
+    "primary": "#fab387",
+    "light": "#fab387",
+    "dark": "#fab387"
+  },
+  "appearance": {
+    "default": "dark",
+    "strict": true
   },
   "background": {
-    "decoration": "grid"
+    "decoration": "grid",
+    "color": {
+      "light": "#1e1e2e",
+      "dark": "#1e1e2e"
+    }
   },
   "favicon": "/favicon.svg",
   "logo": {
