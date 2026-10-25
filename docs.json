@@ -3,18 +3,17 @@
   "theme": "maple",
   "name": "Amit's Docs",
   "colors": {
-    "primary": "#fab387",
+    "primary": "#fe640b",
     "light": "#fab387",
-    "dark": "#fab387"
+    "dark": "#fe640b"
   },
   "appearance": {
-    "default": "dark",
-    "strict": true
+    "default": "dark"
   },
   "background": {
     "decoration": "grid",
     "color": {
-      "light": "#1e1e2e",
+      "light": "#eff1f5",
       "dark": "#1e1e2e"
     }
   },
