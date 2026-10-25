@@ -41,3 +41,84 @@
   padding-top: 0.75rem !important;
   padding-bottom: 0 !important;
 }
+
+/* ------------------------------------------------------------------
+   Catppuccin Mocha (accent: Peach)
+   Palette: https://catppuccin.com/palette (Mocha)
+   Base colors and the peach accent are set in docs.json; the rules
+   below fine-tune surfaces, text and code to match the palette.
+   ------------------------------------------------------------------ */
+:root,
+.dark {
+  --ctp-rosewater: #f5e0dc;
+  --ctp-mauve: #cba6f7;
+  --ctp-red: #f38ba8;
+  --ctp-peach: #fab387;
+  --ctp-yellow: #f9e2af;
+  --ctp-green: #a6e3a1;
+  --ctp-teal: #94e2d5;
+  --ctp-blue: #89b4fa;
+  --ctp-lavender: #b4befe;
+  --ctp-text: #cdd6f4;
+  --ctp-subtext1: #bac2de;
+  --ctp-subtext0: #a6adc8;
+  --ctp-overlay0: #6c7086;
+  --ctp-surface2: #585b70;
+  --ctp-surface1: #45475a;
+  --ctp-surface0: #313244;
+  --ctp-base: #1e1e2e;
+  --ctp-mantle: #181825;
+  --ctp-crust: #11111b;
+}
+
+html,
+body {
+  background-color: var(--ctp-base);
+  color: var(--ctp-text);
+}
+
+/* Navbar and sidebar sit one step darker than the page, like Mocha's mantle */
+#navbar,
+#sidebar,
+#sidebar-content {
+  background-color: var(--ctp-mantle);
+}
+
+/* Footer */
+#footer {
+  border-color: var(--ctp-surface0);
+}
+
+/* Code blocks and inline code */
+pre,
+.code-block {
+  background-color: var(--ctp-mantle) !important;
+  border-color: var(--ctp-surface0) !important;
+}
+:not(pre) > code {
+  background-color: var(--ctp-surface0);
+  color: var(--ctp-peach);
+  border-color: var(--ctp-surface1);
+}
+
+/* Tables and dividers */
+table,
+th,
+td,
+hr {
+  border-color: var(--ctp-surface0);
+}
+
+/* Text selection and focus ring in peach */
+::selection {
+  background-color: rgba(250, 179, 135, 0.3);
+  color: var(--ctp-text);
+}
+:focus-visible {
+  outline-color: var(--ctp-peach);
+}
+
+/* Scrollbars */
+* {
+  scrollbar-color: var(--ctp-surface1) transparent;
+}
