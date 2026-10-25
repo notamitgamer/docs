@@ -1,0 +1,73 @@
+---
+title: "Android app"
+sidebarTitle: "Android app"
+---
+
+import Copyright from "/snippets/copyright.mdx";
+
+The Android app is a small [Capacitor](https://capacitorjs.com) shell around your web app. It loads your server's URL, so every web update reaches the app without a new APK. Only the notification and system parts are native.
+
+## Why use it
+
+- **Notifications without Chrome.** Push arrives through Firebase Cloud Messaging (FCM) in the app itself. On Vivo, Oppo and Xiaomi phones you only need to exempt this one app from battery limits, not the whole browser.
+- **Buttons on notifications:** **Mark read**, **Delete** and **Reply**. Mark read and Delete work without opening the app.
+- **Mail links and sharing:** `mailto:` links and **Share to Mailbox** open a new message.
+- **Polish:** an animated splash screen, 120 Hz where the phone supports it, a status bar that matches the app, and a small haptic tick when a swipe reaches its action.
+
+The PWA keeps working as before. You can run both, but turn the PWA's notifications off on a phone that has the app, or you will get each mail twice.
+
+## Set up
+
+<Steps>
+  <Step title="Add an Android app in Firebase">
+    In the Firebase console (the same project the server uses), add an Android app with the package name `dev.amit.mail`. Enable **Google** under Authentication, add the SHA-1 of your signing key (next step), and download `google-services.json` **after** adding the SHA-1.
+  </Step>
+  <Step title="Create a signing key">
+    ```bash
+    keytool -genkeypair -v -keystore release.jks -alias mail -keyalg RSA -keysize 2048 -validity 10000
+    keytool -list -v -keystore release.jks -alias mail
+    ```
+    Use the same password for the keystore and the key. Back the file up: a different key cannot update an installed app.
+  </Step>
+  <Step title="Add three repository secrets">
+    | Secret | Value |
+    |---|---|
+    | `GOOGLE_SERVICES_JSON` | `google-services.json` (raw or base64) |
+    | `KEYSTORE_BASE64` | `base64 -w0 release.jks` |
+    | `KEYSTORE_PASSWORD` | the keystore password |
+  </Step>
+  <Step title="Allow the workflow to publish">
+    In **Settings > Actions > General > Workflow permissions**, choose **Read and write**.
+  </Step>
+  <Step title="Build">
+    Run the **Android APK** workflow from the Actions tab, or push a tag such as `android-v1.0`. The signed `mailbox.apk` is attached to a new release.
+  </Step>
+</Steps>
+
+If your server is not at `https://mail.amit.is-a.dev`, change `server.url` in `android-app/capacitor.config.json` and `BASE` in `android-app/native/MailActionReceiver.java` before building.
+
+## How notifications work
+
+1. When mail arrives, the server sends a **data-only** high-priority FCM message to every saved phone, next to the Web Push it sends to browsers.
+2. The app's own service builds the notification. While the app is open it stays silent and the list just refreshes.
+3. **Mark read** and **Delete** call `POST /api/push/action` with the mail's short-lived push token, which is bound to that one mail, so no sign-in is needed.
+4. **Reply** and a tap open the mail in the app. A small tick of the same token opens it with no sync first.
+5. When nothing is unread, leftover notifications are cleared so the launcher badge goes away.
+
+Tokens for phones that uninstalled the app are removed the next time FCM reports them as gone.
+
+<Tip>
+On Vivo and Origin OS, set the app's battery to **Unrestricted**, allow **Autostart**, lock it in recent apps and do not swipe it away. A force-stopped app receives no notifications until it is opened again.
+</Tip>
+
+## Updating
+
+Web changes arrive by themselves. Native changes need a new release; install the new APK over the old one. A tool such as Obtainium can watch the releases page and update it for you.
+
+## Troubleshooting
+
+- **No notification when the app is open:** expected. The app refreshes instead.
+- **Sign-in fails:** the SHA-1 of your signing key is missing in Firebase, or `google-services.json` was downloaded before it was added. Add it, download the file again and update the secret.
+- **Nothing arrives:** check that the server was redeployed with FCM support, that Firebase Cloud Messaging API is enabled for the project, and look for `FCM failed` in the server log.
+
+<Copyright />
