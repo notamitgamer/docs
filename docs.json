@@ -119,6 +119,7 @@
           "mail-server/setup",
           "mail-server/usage",
           "mail-server/push-notifications",
+          "mail-server/android-app",
           "mail-server/api"
         ]
       }

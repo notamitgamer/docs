@@ -31,6 +31,7 @@ The token must belong to the account in `MAILBOX_OWNER_EMAIL`, and that email mu
 | `GET /ping` | Health check. Returns a short text reply |
 | `GET /api/config` | Non-secret settings the app needs to start: Firebase web config, your aliases, the display name and the VAPID public key |
 | `POST /api/incoming` | The Resend webhook. The request is verified with the webhook signing secret |
+| `POST /api/push/action` | Android notification buttons. Body: `id`, `t` (the mail's push token) and `op` (`read` or `delete`). Needs a valid token, otherwise `403` |
 | `GET /api/push/mail/:id` | Reads one inbox mail. Needs the short-lived token from its push in the `x-push-token` header, otherwise `403` |
 
 ## Owner endpoints: mail
@@ -52,10 +53,11 @@ The token must belong to the account in `MAILBOX_OWNER_EMAIL`, and that email mu
 |---|---|
 | `POST /api/push/subscribe` | Save a device. Body: `subscription` |
 | `POST /api/push/unsubscribe` | Remove a device. Body: `endpoint` |
+| `POST /api/push/fcm` | Save an Android phone's FCM token. Body: `token` |
 | `POST /api/push/test` | Send a test notification to every saved device |
 
 ## Data
 
-Mail is stored in three Firestore collections: `mails` (received), `sent` (sent and forwarded) and `pushSubs` (one document per device).
+Mail is stored in three Firestore collections: `mails` (received), `sent` (sent and forwarded) `pushSubs` (one document per browser) and `fcmTokens` (one document per Android phone).
 
 <Copyright />
