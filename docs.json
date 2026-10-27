@@ -112,15 +112,15 @@
         ]
       },
       {
-        "group": "Mail Server",
+        "group": "Mailbox",
         "icon": "mail",
         "pages": [
-          "mail-server/index",
-          "mail-server/setup",
-          "mail-server/usage",
-          "mail-server/push-notifications",
-          "mail-server/android-app",
-          "mail-server/api"
+          "mailbox/index",
+          "mailbox/setup",
+          "mailbox/usage",
+          "mailbox/push-notifications",
+          "mailbox/android-app",
+          "mailbox/api"
         ]
       }
     ]
@@ -145,5 +145,15 @@
     "socials": {
       "github": "https://github.com/notamitgamer"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/mail-server",
+      "destination": "/mailbox"
+    },
+    {
+      "source": "/mail-server/:slug*",
+      "destination": "/mailbox/:slug*"
+    }
+  ]
 }
