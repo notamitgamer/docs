@@ -38,6 +38,10 @@ service cloud.firestore {
 Earlier versions of this project shipped a public `firebaseConfig` in the frontend with permissive `allow read: if true` rules. This let anyone who inspected the page source read your entire chat database directly, bypassing the login screen. If you're on v4.2.1 or later, switch to the rules above and make sure your `index.html` has no `firebaseConfig` or Firebase SDK `<script>` tags left in it (see [Setup the Frontend](/whatsapp-logger/setup-frontend)).
 </Danger>
 
+## Create the catch-up index (one time, after the first deploy)
+
+After your first deploy, open the backend's `/logs` page. If you see **"Catch-up skipped"** followed by a long `console.firebase.google.com` link, open that link and click **Create index**. It takes a few minutes. Without it, messages saved while the server was asleep are not loaded back on restart.
+
 ## Get backend credentials (service account)
 
 1. Go to **Project Settings** (gear icon) → **Service accounts**.

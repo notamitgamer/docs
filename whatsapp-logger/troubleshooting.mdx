@@ -13,4 +13,16 @@ import Copyright from "/snippets/copyright.mdx";
 **Chat shows a long ID (e.g. `1155...@lid`) instead of a phone number**
 : Wait a few minutes. The backend automatically syncs contacts and updates the record with the real phone number.
 
+**"Catch-up skipped" with a Firebase link in the logs**
+: Open the link and click **Create index**. See [Firebase Setup](/whatsapp-logger/firebase-setup).
+
+**Firestore says "RESOURCE_EXHAUSTED" or quota exceeded**
+: The free plan allows 50,000 reads and 20,000 writes per day, and resets at midnight Pacific time. The logger keeps working from memory and saves queued messages once Firestore is available again. If you migrated from an older version, delete the old `whatsapp_auth` data (status page) to stop paying for it.
+
+**I scanned the QR code but nothing happens**
+: Give it up to 20 seconds. The page switches to Connected on its own. If it doesn't, use the **Phone number** tab or press **Start over**.
+
+**An edit or delete isn't showing in the app**
+: The message must have been seen by the logger before it was edited or deleted. Check `/logs` for `Edit logged for message` or `marked deleted`. Make sure the app and backend are on the latest version (Settings → About → Backend version).
+
 <Copyright />

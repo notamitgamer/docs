@@ -12,7 +12,24 @@ import Copyright from "/snippets/copyright.mdx";
    - **iOS**: Settings → Linked Devices
    - **Android**: three dots → Linked Devices
 5. Tap **Link a Device** and scan the QR code.
-6. The page refreshes and shows **"System Operational"**. Your backend is now listening.
+6. The page switches to **Connected** by itself, usually within a few seconds. Your backend is now listening.
+
+## Link with a phone number instead
+
+Can't scan the QR code (for example because you're on the same phone)?
+
+1. On the link page open the **Phone number** tab.
+2. Enter your WhatsApp number with country code, digits only (for example `919876543210`) and press **Get code**.
+3. On your phone: **Linked devices → Link a device → Link with phone number instead**.
+4. Type the 8-character code shown on the page.
+
+## Upgrading from an older version?
+
+The login is stored in a new place, so you need to link once more after updating. Afterwards, on the status page, **Delete old whatsapp_auth data** removes the old per-key login data from Firestore. It's safe, and it uses about one read and one write per old document, so run it when your quota is healthy.
+
+## Linking again later
+
+Use **Relink device** on the status page. It logs the device out, wipes the saved login and shows a fresh QR code.
 
 Continue to [Setup the Frontend](/whatsapp-logger/setup-frontend).
 
